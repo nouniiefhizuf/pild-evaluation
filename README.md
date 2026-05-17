@@ -6,7 +6,6 @@
 [![Paper](https://img.shields.io/badge/Paper-arXiv-red.svg)](https://arxiv.org/abs/XXXX.XXXXX)
 
 > **Official Implementation** of *"Beyond Pixel-Pushing: Evaluating Large Language Models as Actionable Physics Simulators via Prompt Engineering"*  
-> Accepted at NeurIPS 2026 (Undergraduate Research Track)  
 > Ahmed Soltani, Ryan Chanchah, Skander Darghouth, Khalil Ben Rejeb  
 > South Mediterranean University, MedTech Institute
 
