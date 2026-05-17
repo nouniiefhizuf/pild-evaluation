@@ -1,0 +1,29 @@
+{
+  "id": "rigid_body_001",
+  "description": "A 2kg ball is thrown from ground level at 30 degrees above horizontal with initial speed 20m/s. Simulate the trajectory under gravity (g=9.81m/s^2), ignoring air resistance.",
+  "domain": "rigid_body",
+  "difficulty": "easy",
+  "initial_conditions": {
+    "m": 2.0,
+    "v0": 20.0,
+    "theta_deg": 30.0,
+    "g": 9.81
+  },
+  "t_span": [
+    0.0,
+    2.5
+  ],
+  "y0": [
+    17.32,
+    10.0,
+    0.0,
+    0.0
+  ],
+  "reference_code": "import numpy as np\nfrom scipy.integrate import solve_ivp\nimport matplotlib.pyplot as plt\n\ndef simulate(t_eval, y0, params):\n    g = params['g']\n    def dynamics(t, y):\n        vx, vy, x, y_pos = y\n        return [0, -g, vx, vy]\n    \n    sol = solve_ivp(dynamics, [t_eval[0], t_eval[-1]], y0, \n                    t_eval=t_eval, method='Radau', atol=1e-12, rtol=1e-12)\n    return sol.y.T\n\n# Ground truth: R = 35.31m, H = 5.10m",
+  "ground_truth": {
+    "range": 35.31,
+    "max_height": 5.1,
+    "flight_time": 2.04,
+    "method": "analytical"
+  }
+}

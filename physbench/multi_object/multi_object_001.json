@@ -1,0 +1,37 @@
+{
+  "id": "multi_object_001",
+  "description": "Three-body gravitational problem: masses m1=1.0, m2=0.5, m3=0.3 at positions forming equilateral triangle (side 1.0 AU). Simulate for 10 years.",
+  "domain": "multi_object",
+  "difficulty": "hard",
+  "initial_conditions": {
+    "m1": 1.0,
+    "m2": 0.5,
+    "m3": 0.3,
+    "G": 39.47841760435743,
+    "side": 1.0
+  },
+  "t_span": [
+    0.0,
+    10.0
+  ],
+  "y0": [
+    0.5,
+    0.0,
+    0.0,
+    0.0,
+    -0.25,
+    0.433,
+    0.0,
+    0.0,
+    -0.25,
+    -0.433,
+    0.0,
+    0.0
+  ],
+  "reference_code": "import numpy as np\nfrom scipy.integrate import solve_ivp\n\ndef simulate(t_eval, y0, params):\n    G = params['G']\n    m = [params['m1'], params['m2'], params['m3']]\n    \n    def dynamics(t, y):\n        # Unpack positions and velocities\n        n = 3\n        pos = y[:2*n].reshape(n, 2)\n        vel = y[2*n:].reshape(n, 2)\n        \n        # Compute accelerations\n        acc = np.zeros_like(pos)\n        for i in range(n):\n            for j in range(n):\n                if i != j:\n                    r_ij = pos[j] - pos[i]\n                    dist = np.linalg.norm(r_ij)\n                    acc[i] += G * m[j] * r_ij / dist**3\n        \n        return np.concatenate([vel.flatten(), acc.flatten()])\n    \n    sol = solve_ivp(dynamics, [t_eval[0], t_eval[-1]], y0,\n                    t_eval=t_eval, method='DOP853', atol=1e-10, rtol=1e-10)\n    return sol.y.T",
+  "ground_truth": {
+    "energy_conservation_tolerance": 1e-06,
+    "angular_momentum_conservation": true,
+    "method": "symplectic_integrator"
+  }
+}

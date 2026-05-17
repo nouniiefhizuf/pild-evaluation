@@ -1,0 +1,30 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite both the paper and the software itself."
+type: software
+title: "PhysBench-1K: Evaluating LLMs as Actionable Physics Simulators"
+authors:
+  - family-names: Soltani
+    given-names: Ahmed
+  - family-names: Chanchah
+    given-names: Ryan
+  - family-names: Darghouth
+    given-names: Skander
+  - family-names: Ben Rejeb
+    given-names: Khalil
+repository-code: "https://github.com/medtech-tn/pild-evaluation"
+license: MIT
+preferred-citation:
+  type: conference-paper
+  title: "Beyond Pixel-Pushing: Evaluating Large Language Models as Actionable Physics Simulators via Prompt Engineering"
+  authors:
+    - family-names: Soltani
+      given-names: Ahmed
+    - family-names: Chanchah
+      given-names: Ryan
+    - family-names: Darghouth
+      given-names: Skander
+    - family-names: Ben Rejeb
+      given-names: Khalil
+  conference:
+    name: "Advances in Neural Information Processing Systems"
+  year: 2026

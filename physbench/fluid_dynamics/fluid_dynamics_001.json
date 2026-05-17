@@ -1,0 +1,25 @@
+{
+  "id": "fluid_dynamics_001",
+  "description": "Simulate 2D incompressible flow past a circular cylinder (diameter D=0.1m) at Reynolds number Re=100. Use streamfunction-vorticity formulation.",
+  "domain": "fluid_dynamics",
+  "difficulty": "medium",
+  "initial_conditions": {
+    "D": 0.1,
+    "Re": 100,
+    "U_inf": 1.0,
+    "nu": 0.001
+  },
+  "t_span": [
+    0.0,
+    10.0
+  ],
+  "y0": [
+    0.0
+  ],
+  "reference_code": "import numpy as np\nfrom scipy.integrate import solve_ivp\n\ndef simulate(t_eval, y0, params):\n    # Simplified vortex shedding model\n    Re = params['Re']\n    St = 0.16  # Strouhal number for Re=100\n    \n    def dynamics(t, y):\n        # Von Karman vortex street approximation\n        omega = 2 * np.pi * St\n        return [np.sin(omega * t)]\n    \n    sol = solve_ivp(dynamics, [t_eval[0], t_eval[-1]], y0,\n                    t_eval=t_eval, method='RK45')\n    return sol.y.T",
+  "ground_truth": {
+    "strouhal_number": 0.16,
+    "drag_coefficient": 1.35,
+    "method": "CFD_reference"
+  }
+}

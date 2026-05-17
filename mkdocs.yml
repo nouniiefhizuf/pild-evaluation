@@ -1,0 +1,59 @@
+site_name: PhysBench-1K Documentation
+site_description: Evaluating LLMs as Actionable Physics Simulators
+site_author: MedTech Institute
+repo_url: https://github.com/medtech-tn/pild-evaluation
+
+theme:
+  name: material
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - search.highlight
+    - content.code.copy
+
+plugins:
+  - search
+
+nav:
+  - Home: index.md
+  - Getting Started:
+    - Installation: installation.md
+    - Quick Start: quickstart.md
+    - API Setup: api_setup.md
+  - Dataset:
+    - Overview: dataset.md
+    - Format: format.md
+  - Metrics:
+    - PDE: pde.md
+    - Semantic Metrics: semantic.md
+  - API Reference:
+    - PhysBench: api/physbench.md
+    - Prompts: api/prompts.md
+    - Evaluation: api/evaluation.md
+    - Inference: api/inference.md
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - admonition
+  - pymdownx.details
+  - pymdownx.tabbed:
+      alternate_style: true
+  - tables
